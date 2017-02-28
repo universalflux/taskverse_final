@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html ng-app="taskverse">
+
+  <head>
+    <title> Welcome to TaskVerse </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    <link rel="stylesheet" href="styles/hand_coded.css">
+    <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script>
+    <script src="js/initialization.js"></script>
+    <script src="js/angular_config.js"></script>
+    <script src="js/angular_routes.js"></script>
+    <script src="js/angular_user.js"></script>
+    <script src="js/angular_task.js"></script>
+
+  </head>
+
+  <body class="blue darken-4">
+
+    <header>
+      <div class="row">
+        <div class="col s12 center-align">
+            <h1 class="white-text"> Welcome to TaskVerse </h1>
+            <h3 class="blue-text text-lighten-4"> Daily tasks made simple. </h3>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+    <section id="login" ng-controller="UsersController as user">
+      <div class="row">
+        <div class="col s12 m6 l6">
+          <img class="center-align" id="login-rocket" src="images/login_rocket.png">
+        </div>
+        <div ng-hide="user.hideLogin" class="col s12 m6 l6">
+          <input ng-model="user.potUser.username" type="text" class="" placeholder="username">
+          <input ng-model="user.potUser.password" type="password" class="" placeholder="password">
+          <a ng-click="user.login(user.potUser)"class="btn"> Login </a>
+          <a ng-hide="user.hideCreate"><p class="gray-text text-lighten-3 center-align"> sign up.</p></a>
+        </div>
+        <div ng-hide="user.hideCreate" class="col s12 m6 l6">
+          <input ng-model="user.newUser.username" type="text" class="" placeholder="username">
+          <input ng-model="user.newUser.password" type="password" class="" placeholder="password">
+          <a ng-click="user.add(user.newUser)"class="btn"> Create </a>
+          <a ng-hide="user.hideLogin"><p class="gray-text text-lighten-3 center-align"> sign up.</p></a>
+        </div>
+      </div>
+    </section>
+    <div ng-view="">
+    </div>
+  </div>
+  </div>
+  <footer>
+    <p class="white-text center-align"> &copy;2017 Universalflux </p>
+  </footer>
+  </body>
+
+</html>
