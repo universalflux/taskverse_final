@@ -4,7 +4,8 @@ let UserSchema = new Schema ({
   firstName: String,
   lastName: String,
   username: String,
-  password: String
+  password: String,
+  tasks: [{type: Schema.ObjectId, ref: 'Task'}]
 },
 {
   timestamps: true

@@ -29,4 +29,8 @@ input {
   padding: 10px 0 10px 0;
 }
 
+div.error {
+  border-radius: 25px;
+}
+
 /* end of login and signup */

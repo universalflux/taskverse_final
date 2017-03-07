@@ -1,5 +1,6 @@
 let mongoose = require('mongoose');
 let User = mongoose.model('User');
+let Task = mongoose.model('Task');
 
 module.exports = (function(req, res){
   return {
@@ -7,6 +8,8 @@ module.exports = (function(req, res){
       User.findOne({username: req.body.username}, function(err, success) {
         if(success){
           console.log("User is already in the system.  Pick a new username.");
+          let error = {readOut: "User is already in the system."};
+          res.json(error);
         } else {
           User.create(req.body, function(err, success){
             if(!success){
@@ -21,15 +24,20 @@ module.exports = (function(req, res){
 
     },
     login: function(req, res) {
-      User.findOne({username: req.body.username}, function(err, found){
+      User.findOne({username: req.body.username})
+      .populate('Tasks')
+      .exec(function(err, found){
         if(!found){
           console.log('Houston we have a problem.' + err);
+          let error = {readOut: "Can't find username in the system."};
         } else {
           if(found.password == req.body.password){
           console.log('Success! We found ' + found.username);
           res.json(found);
         } else {
           console.log('Username or Password is incorrect.');
+          let error = {readOut: "Username or Password is Incorrect."}
+          res.json(error);
         }
         }
       });

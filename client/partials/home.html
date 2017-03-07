@@ -1,3 +1,16 @@
 <div ng-controller = "UsersController as user">
-<h1> Hello! {{user.currentUser.username}}</h1>
+  <div ng-if="user.currentUser.username">
+      <h1 class="white-text"> Hello! {{user.currentUser.username}}</h1>
+  </div>
+  <div ng-if="user.currentUser.tasks" ng-controller = "TasksController as task">
+    <input type="text" ng-model="task.insertTask.item" placeholder="add task">
+    <a ng-click="task.addTask(task.insertTask)" class="btn"> Add Task </a>
+    <div ng-repeat="list in task.currentUser.tasks">
+    <ul>
+      <li class="purple"> <h4 class="lighten-2 white-text center-align"> {{ list.item }} </h4><a ng-click="task.removeTask(list)" class="btn red white-text left-align">X</a>
+      </li>
+    </ul>
+  </div>
+  </div>
+
 </div>

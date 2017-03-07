@@ -32,7 +32,7 @@
     </header>
     <div class="container">
     <section id="login" ng-controller="UsersController as user">
-      <div class="row">
+      <div ng-hide="user.hideAll" class="row">
         <div class="col s12 m6 l6">
           <img class="center-align" id="login-rocket" src="images/login_rocket.png">
         </div>
@@ -40,15 +40,18 @@
           <input ng-model="user.potUser.username" type="text" class="" placeholder="username">
           <input ng-model="user.potUser.password" type="password" class="" placeholder="password">
           <a ng-click="user.login(user.potUser)"class="btn"> Login </a>
-          <a ng-hide="user.hideCreate"><p class="gray-text text-lighten-3 center-align"> sign up.</p></a>
+          <a ng-click="user.loginDivSwitch({status:'create'})"><p class="gray-text text-lighten-3 center-align"> create. </p></a>
+          <div class="error" ng-if="user.currentUser.readOut"> <h5 class="white-text red center-align"> {{ user.currentUser.readOut }} </h5></div>
         </div>
         <div ng-hide="user.hideCreate" class="col s12 m6 l6">
           <input ng-model="user.newUser.username" type="text" class="" placeholder="username">
           <input ng-model="user.newUser.password" type="password" class="" placeholder="password">
           <a ng-click="user.add(user.newUser)"class="btn"> Create </a>
-          <a ng-hide="user.hideLogin"><p class="gray-text text-lighten-3 center-align"> sign up.</p></a>
+          <a ng-click="user.loginDivSwitch({status:'login'})"><p class="gray-text text-lighten-3 center-align"> sign in.</p></a>
+          <div class="error" ng-if="user.currentUser.readOut"> <h5 class="white-text red center-align"> {{ user.currentUser.readOut }} </h5></div>
         </div>
       </div>
+
     </section>
     <div ng-view="">
     </div>
